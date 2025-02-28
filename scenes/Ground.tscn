@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=2]
 
-[ext_resource path="res://Assets/snow.png" type="Texture2D" id=1]
+[ext_resource type="Texture2D" uid="uid://b68jl37at5b4g" path="res://assets/snow.png" id="1"]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 175.9, 35 )
