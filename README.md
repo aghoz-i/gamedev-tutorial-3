@@ -1,3 +1,4 @@
+Note: Referensi dari Chat-GPT untuk mekanisme-mekanisme teknikal, bukan logic dari program/script (contoh dari Chat-GPT: cara ganti static sprite)
 ## Latihan mandiri: Eksplorasi Mekanika Pergerakan
 Beberapa mekanisme ini diambil dari Dokumen Tutorial-3 dan game `Brawlhalla`
 ### Double Jump:
@@ -92,4 +93,51 @@ Terakhir, untuk mengembalikan state `Player` dari `is_dashing == true` menjadi `
 ```
 if dash_timer <= 0:
     is_dashing = false
+```
+
+
+## Bonus: Ganti static sprite berdasarkan gerakan
+Tambahkan variabel-variabel dibawah untuk mengatur sprite di Script.
+```
+@onready var sprite = $Sprite2D 
+
+@export var idle_texture: Texture
+@export var walk_texture: Texture
+@export var dash_texture: Texture
+```
+Dengan menggunakan `@export var`, tekstur dapat diatur dengan klik Node Player di Scene, dan memilih di Inspector window
+
+Setelah mengeset tekstur, kita bisa menggunakan dan mengubah sprite di script berdasarkan gerakan tertentu. 
+Yang sering saya gunakan adalah `sprite.texture` (untuk mengubah tekstur) dan `sprite.flip_h` (untuk mengubah arah kiri/kanan). 
+Contoh, untuk jalan ke kiri dan kanan seperti kode di bawah
+```
+elif Input.is_action_pressed("ui_left"):
+    sprite.flip_h = true 
+    velocity.x = -walk_speed
+elif Input.is_action_pressed("ui_right"):
+    sprite.flip_h = false
+    velocity.x = walk_speed
+```
+Contoh lain, untuk sprite dash.
+```
+if Input.is_action_just_pressed("ui_left") and not is_dashing:
+    var current_time = Time.get_ticks_msec()
+    if current_time - last_left_pressed <= 200:
+        sprite.texture = dash_texture
+        sprite.flip_h = true
+        velocity.x = -dash_speed
+        dash_timer = dash_duration
+        is_dashing = true
+    else:
+        last_left_pressed = Time.get_ticks_msec()
+elif Input.is_action_just_pressed("ui_right") and not is_dashing:
+    var current_time = Time.get_ticks_msec()
+    if current_time - last_right_pressed <= 200:
+        sprite.texture = dash_texture
+        sprite.flip_h = false
+        velocity.x = dash_speed
+        dash_timer = dash_duration
+        is_dashing = true
+    else:
+        last_right_pressed = Time.get_ticks_msec()
 ```
