@@ -1,7 +1,9 @@
-[gd_scene load_steps=3 format=3 uid="uid://dsyfep1odrxje"]
+[gd_scene load_steps=5 format=3 uid="uid://dsyfep1odrxje"]
 
-[ext_resource type="PackedScene" path="res://scenes/Ground.tscn" id="1"]
+[ext_resource type="PackedScene" uid="uid://ciqndho74q8sy" path="res://scenes/Ground.tscn" id="1"]
 [ext_resource type="PackedScene" uid="uid://cdxqsu3mlbgib" path="res://scenes/Player.tscn" id="1_m835j"]
+[ext_resource type="AudioStream" uid="uid://co4dpiuek4ug2" path="res://assets/sound/assetssoundbgm.wav" id="3_0bbpv"]
+[ext_resource type="PackedScene" uid="uid://42vvw6hqfac4" path="res://scenes/Medals.tscn" id="4_rarhs"]
 
 [node name="Root" type="Node2D"]
 
@@ -16,3 +18,11 @@ position = Vector2(789.149, 294.054)
 
 [node name="Ground3" parent="." instance=ExtResource("1")]
 position = Vector2(225.95, 294.562)
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+position = Vector2(1, 0)
+stream = ExtResource("3_0bbpv")
+autoplay = true
+
+[node name="Medals" parent="." instance=ExtResource("4_rarhs")]
+position = Vector2(859, 213)

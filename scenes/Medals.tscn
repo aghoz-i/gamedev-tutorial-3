@@ -1,0 +1,47 @@
+[gd_scene load_steps=8 format=3 uid="uid://42vvw6hqfac4"]
+
+[ext_resource type="Script" uid="uid://5axh88cwuwnl" path="res://scenes/Medals.gd" id="1_hksjy"]
+[ext_resource type="Texture2D" uid="uid://bnatrlk505ueh" path="res://assets/kenneymedals/spritesheets/flat.png" id="1_ukbc3"]
+[ext_resource type="AudioStream" uid="uid://leugjvqw5hip" path="res://assets/sound/kenney_rpg-audio/Audio/handleCoins.ogg" id="3_hksjy"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ylat7"]
+size = Vector2(37, 74)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ukbc3"]
+atlas = ExtResource("1_ukbc3")
+region = Rect2(88, 76, 44, 76)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6pwxe"]
+atlas = ExtResource("1_ukbc3")
+region = Rect2(132, 76, 44, 76)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_hksjy"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ukbc3")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6pwxe")
+}],
+"loop": true,
+"name": &"default",
+"speed": 2.0
+}]
+
+[node name="Medals" type="Area2D"]
+script = ExtResource("1_hksjy")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-0.5, 1)
+shape = SubResource("RectangleShape2D_ylat7")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_hksjy")
+frame_progress = 0.607361
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("3_hksjy")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="body_exited" from="." to="." method="_on_body_exited"]
