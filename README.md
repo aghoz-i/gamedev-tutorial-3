@@ -1,3 +1,5 @@
+# Tutorial 3
+
 Note: Referensi dari Chat-GPT untuk mekanisme-mekanisme teknikal, bukan logic dari program/script (contoh dari Chat-GPT: cara ganti static sprite)
 ## Latihan mandiri: Eksplorasi Mekanika Pergerakan
 Beberapa mekanisme ini diambil dari Dokumen Tutorial-3 dan game `Brawlhalla`
@@ -141,3 +143,30 @@ elif Input.is_action_just_pressed("ui_right") and not is_dashing:
     else:
         last_right_pressed = Time.get_ticks_msec()
 ```
+
+
+# Tutorial 5
+Perubahan-perubahan pada tutorial ini adalah sebagai berikut.
+
+## Latihan tutorial
+
+### Mengubah tipe Sprite player
+Sebelumnya, di tutorial 3, kami sudah membuat sistem dimana texture dari Player akan berubah seiring dengan input yang diberikan.
+Namun, pada saat itu, belum ada animasi pada objek Player.
+Di tutorial 5 ini, kami menambahkan animasi pada Player, dengan mengganti tipe sprite dari Sprite2D, menjadi AnimatedSprite2D.
+Selain itu, kami juga menambahkan 2 gerakan baru yang di-animasikan, yaitu fast-fall dan jump.
+
+### Menambah Audio Background
+Mengikuti tutorial yang ada di dokumen, kami menambahkan audio bacground, yang di set autoplay saat game mulai, agar background music dimulai saat launhing game.
+
+
+## Latihan Mandiri
+
+### Menambah Objek baru
+Pada tutorial ini, kami menambahkan objek baru, yaitu Medals.
+Medals diatur menggunakan Area2D, dan ketika Player terdeteksi memasuki collision dari Area2D tersebut, maka akan ditrigger pemutaran audio.
+Audio ini ditambahkan menggunakan AudioStreamPlayer2D.
+Cara mentriggernya adalah dengan mengeset atribut playing dari $AudioStreamPlayer2D, menjadi true ketika fungsi _on_body_entered dari Area2D mendeteksi Player masuk.
+Sebaliknya, ketika fungsi _on_body_exited mendeteksi Player keluar dari Area2D, maka atribut playing dari $AudioStreamPlayer2D akan diset menjadi false, untuk memberikan impresi bahwa pemain game sedang berinteraksi dengan objek-objek di dalam game.
+
+
